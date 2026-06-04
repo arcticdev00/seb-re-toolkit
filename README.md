@@ -2,6 +2,8 @@
 
 Reverse engineering toolkit for Safe Exam Browser's Themida-protected seb_x64.dll integrity module.
 
+Ai readme because im lazy
+
 ## Overview
 
 seb_x64.dll (8.9 MB) is the native anti-tamper module used by Safe Exam Browser 3.10.1 to enforce exam integrity. It is packed with **Oreans WinLicense / Themida 3.x** — code sections are encrypted at rest, real imports are resolved at runtime, and call-site verification blocks out-of-context invocation.
@@ -67,6 +69,7 @@ Six tabs: Overview, Static, Detection, Exports, Call (with parameter inputs), Tr
 - .seb config without browserExamKeySalt/appSignatureKeySalt values will never trigger these exports during tracing
 - Static analysis is inherently limited — Themida decrypts code and resolves imports at runtime
 
+One non ai generated part though, even with correct BSTR signatures and LoadLibrary, both key derivation functions return deterministic looking output, but it's wrong. The values change per LoadLibrary call, aren't real SHA-384/256, and the DLL clearly detects it's not running under SafeExamBrowser.Client.exe. Themida's antiscraping is baked into the export stubs themselves. Um star this repo and join my discord: https://discord.gg/HBjpBv9dUv
 ## License
 
 MIT
